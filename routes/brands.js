@@ -1,40 +1,40 @@
 var express = require('express');
-var factoryStore = require('json-fs-store')('store/companies');
+var brandStore = require('json-fs-store')('store/companies');
 var router = express.Router();
 
-/* GET a list of factories */
+/* GET a list of brands */
 router.get('/', function(req, res, next) {
-    factoryStore.list(function(err, factories) {
+    brandStore.list(function(err, brands) {
         if (err) throw err;
 
-        res.json(factories);
+        res.json(brands);
     });
 });
 
-/* Get a single factory */
+/* GET single brand */
 router.get('/:id', function(req, res, next) {
-    factoryStore.load(req.params.id, function(err, factory) {
+    brandStore.load(req.params.id, function(err, brand) {
         if (err) throw err;
 
-        res.json(factory);
+        res.json(brand);
     });
 });
 
-/* Create a factory resource */
+/* Create a new brand resource */
 router.post('/', function(req, res, next) {
     if (!req.body) return res.sendStatus(400);
 
-    var newFactory = {
+    var newBrand = {
         name: req.body.name,
         email: req.body.email,
         phone_number: req.body.phone_number,
         city: req.body.city,
         state: req.body.state
     };
-    factoryStore.add(newFactory, function(err) {
+    brandStore.add(newBrand, function(err) {
         if (err) throw err;
 
-        res.json(newFactory);
+        res.json(newBrand);
     });
 });
 
