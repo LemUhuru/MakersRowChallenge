@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
         res.json(factories);
     });
 });
+
 router.get('/:id', function(req, res, next) {
     factoryStore.load(req.params.id, function(err, factory) {
         if (err) throw err;
@@ -17,11 +18,16 @@ router.get('/:id', function(req, res, next) {
         res.json(factory);
     });
 });
+
 router.post('/', function(req, res, next) {
     if (!req.body) return res.sendStatus(400);
 
     var newFactory = {
-        name: req.body.name
+        name: req.body.name,
+        email: req.body.email,
+        phone_number: req.body.phone_number,
+        city: req.body.city,
+        state: req.body.state
     };
     factoryStore.add(newFactory, function(err) {
         if (err) throw err;
