@@ -7,7 +7,10 @@ router.get('/', function(req, res, next) {
     brandStore.list(function(err, brands) {
         if (err) throw err;
 
-        res.json(brands);
+        function checkCompany(company) {
+          return company.company_type === 'brand';
+        }
+        res.json(brands.filter(checkCompany));
     });
 });
 
