@@ -22,7 +22,7 @@ describe('Brands', function () {
     });
     it('gets a single brand', function (done) {
         request(app)
-            .get('/brands/0a75d3f4-c8ff-47bb-84c3-a874007d1b4f')
+            .get('/brands/418eb08b-749d-497c-812b-63d88609a4be')
             .expect(200)
             .end(function(err, res) {
                 if (err) return done.fail(res);
@@ -49,4 +49,13 @@ describe('Brands', function () {
                 done(res);
             });
     })
+    it('removes a brand', function(done) {
+      request(app)
+          .delete('/brands/418eb08b-749d-497c-812b-63d88609a4be')
+          .expect(200)
+          .end(function(err, res) {
+            if (err) return done.fail(res);
+            done(res);
+          });
+    });
 });

@@ -42,4 +42,13 @@ router.post('/', function(req, res, next) {
     });
 });
 
+/* Remove a factory resource */
+
+router.delete('/:id', function(req, res, next) {
+  factoryStore.remove(req.params.id, function(err) {
+    if(err) throw err;
+    res.json(true);
+  });
+});
+
 module.exports = router;

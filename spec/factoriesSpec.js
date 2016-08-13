@@ -23,7 +23,7 @@ describe('Factories', function () {
     });
     it('gets a single factory', function (done) {
         request(app)
-            .get('/factories/1a537038-b78a-402e-a461-82cdda48aaf3')
+            .get('/factories/1b83045b-3e73-420f-93b5-8cc56e138cd3')
             .expect(200)
             .end(function(err, res) {
                 if (err) return done.fail(res);
@@ -49,5 +49,14 @@ describe('Factories', function () {
                 expect(res.body.company_type).toEqual('factory');
                 done(res);
             });
-    })
+    });
+    it('removes a factory', function(done) {
+      request(app)
+          .delete('/factories/5ab408bf-988b-438f-8f9d-772f8d17e087')
+          .expect(200)
+          .end(function(err, res) {
+            if (err) return done.fail(res);
+            done(res);
+          });
+    });
 });
