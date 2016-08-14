@@ -18,7 +18,7 @@ app.use('/factories', factoryRoutes);
 app.use('/brands', brandRoutes);
 
 app.get('/', function(req, res) {
-    res.send('Status 200');
+    res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 // catch 404 and forward to error handler
